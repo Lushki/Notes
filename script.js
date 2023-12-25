@@ -13,13 +13,16 @@ function addNote(event)
         document.getElementById('newNote').value = '';
         displayNotes();
 
-
+        
         console.log(notes); //REMOVE LATER
 }
 
-function deletNote()
-{
-        
+function deletNote(noteId)
+{ 
+        //Querrs all notes and leaves out the one with the rec id
+        notes = notes.filter(note => note.id !== noteId); 
+        displayNotes();
+        console.log(notes); //REMOVE LATER
 }
 
 function displayNotes()
@@ -31,8 +34,8 @@ function displayNotes()
                 noteElement.innerHTML = 
                 `<form class="note" id="note-${note.id}">
                 Note: <span class="content">${note.content}</span>
-                <button class="removeButton" type="button">Remove</button>
-            </form>`
+                <button class="removeButton" type="button" onclick="deletNote(${note.id})">Remove</button>
+                </form>`
 
             container.appendChild(noteElement); 
         });
