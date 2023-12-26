@@ -35,6 +35,7 @@ function displayNotes()
                 `<form class="note" id="note-${note.id}">
                 Note: <span class="content">${note.content}</span>
                 <button class="removeButton" type="button" onclick="deletNote(${note.id})">Remove</button>
+                <button class="editButton" type="button" onclick="editNote(${note.id})">Edit</button>
                 </form>`
 
             container.appendChild(noteElement); 
@@ -47,6 +48,16 @@ function displayNotes()
         
 }
 
+function editNote(noteId)
+{
+        const noteToEdit = notes.find(note => note.id === noteId);
+        const updatedContent = prompt('Edit note:', noteToEdit.content);
+        if (updatedContent !== null) {
+                noteToEdit.content = updatedContent;
+                displayNotes();
+            }
+        console.log(notes); //Remove Later
+}
 
 
 document.getElementById('noteForm').addEventListener('submit',addNote);
