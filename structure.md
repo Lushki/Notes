@@ -21,3 +21,13 @@ text formating using markdown inside the next [V]
 https://byby.dev/js-markdown-libs
 https://github.com/markedjs/marked - import using CDN
 https://medium.com/@ricardo.zambon/use-any-github-repo-as-a-cdn-b411eebdfbf1
+
+XSS protection for input filed  
+
+
+# CSS
+https://www.youtube.com/watch?v=x-4aGYRmHIw&ab_channel=ByteGrad
+https://www.youtube.com/watch?v=EiNiSFIPIQE&ab_channel=SlayingTheDragon
+https://www.w3schools.com/css/css3_transitions.asp
+bubble for marckdown instructions
+

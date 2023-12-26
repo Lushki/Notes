@@ -34,14 +34,14 @@ function deleteNote(noteId) {
 }
 
 function displayNotes() {
-    const container = document.createElement('div');
+    const container = document.createElement('container');
     container.innerHTML = '';
     notes.forEach(note => {
         if (note.content.toLowerCase().includes(filter)) {
             const noteElement = document.createElement('div');
             noteElement.innerHTML =
                 `<form class="note" id="note-${note.id}">
-                    Note: <span class="content">${marked(note.content)}</span>
+                    <span class="content">${marked.parse(note.content)}</span>
                     <button class="removeButton" type="button" onclick="deleteNote(${note.id})">Remove</button>
                     <button class="editButton" type="button" onclick="editNote(${note.id})">Edit</button>
                 </form>`;
