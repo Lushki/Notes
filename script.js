@@ -22,18 +22,17 @@ function addNote() {
     document.getElementById('newNote').value = '';
     displayNotes();
     updateNoteStorage();
-    console.log(notes); // REMOVE LATER
 }
 
 function deleteNote(noteId) {
-    // Queries all notes and leaves out the one with the received id
+    // Removes the note with recived id from notes
     notes = notes.filter(note => note.id !== noteId);
     displayNotes();
     updateNoteStorage();
-    console.log(notes); // REMOVE LATER
 }
 
 function displayNotes() {
+        //displays the notes on screen + modifys the inputs for markdown and stops XSS
     const container = document.createElement('container');
     container.innerHTML = '';
     notes.forEach(note => {
@@ -41,7 +40,7 @@ function displayNotes() {
             const noteElement = document.createElement('div');
             noteElement.innerHTML =
                 `<form class="note" id="note-${note.id}">
-                    <span class="content">${marked.parse(note.content)}</span>
+                    <span class="content">${DOMPurify.sanitize(marked.parse(note.content))}</span>
                     <button class="removeButton" type="button" onclick="deleteNote(${note.id})">Remove</button>
                     <button class="editButton" type="button" onclick="editNote(${note.id})">Edit</button>
                 </form>`;
@@ -55,6 +54,7 @@ function displayNotes() {
 }
 
 function editNote(noteId) {
+        //edit note based on recived id
     const noteToEdit = notes.find(note => note.id === noteId);
     const updatedContent = prompt('Edit note:', noteToEdit.content);
     if (updatedContent !== null) {
@@ -62,19 +62,21 @@ function editNote(noteId) {
         displayNotes();
         updateNoteStorage();
     }
-    console.log(notes); // Remove Later
 }
 
 function updateNoteStorage() {
+        //updates the local storge
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
 function setFilter() {
+        //setting filter based on search form
     filter = document.getElementById('searchBar').value.toLowerCase();
     console.log(filter);
     displayNotes();
 }
 
+//cheacks for events and prevents the defualt so as to not erase screen
 window.addEventListener('load', initialize);
 document.getElementById('noteForm').addEventListener('submit', function(event) {
         event.preventDefault();

@@ -16,13 +16,13 @@
 
     <form id="noteForm">
         <h1>New Note</h1>
-        <input type="text" id="newNote" placeholder="Add a new note" required>
+        <input type="text" id="newNote" placeholder="Add a new note" required autocomplete="off">
         <button type="submit" id="submitBtn">Add Note</button>
     </form>
 
     <div id="content"></div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="text/javascript" src="dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!--import for markdown-->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.4/dist/purify.min.js"></script><!--import for purify to stop XSS-->
     <script src="script.js"></script>
 </body>
 </html>
