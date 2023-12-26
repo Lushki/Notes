@@ -12,8 +12,7 @@ function initialize() {
     }
 }
 
-function addNote(event) {
-    event.preventDefault();
+function addNote() {
     let newNote = {
         "id": id,
         content: document.getElementById('newNote').value
@@ -38,7 +37,7 @@ function displayNotes() {
     const container = document.createElement('div');
     container.innerHTML = '';
     notes.forEach(note => {
-        if (note.content.includes(filter)) {
+        if (note.content.toLowerCase().includes(filter)) {
             const noteElement = document.createElement('div');
             noteElement.innerHTML =
                 `<form class="note" id="note-${note.id}">
@@ -70,12 +69,16 @@ function updateNoteStorage() {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
-function setFilter(event) {
-    event.preventDefault();
+function setFilter() {
     filter = document.getElementById('searchBar').value;
     displayNotes();
 }
 
 window.addEventListener('load', initialize);
-document.getElementById('noteForm').addEventListener('submit', addNote);
-document.getElementById('filterForm').addEventListener('submit', setFilter);
+document.getElementById('noteForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        addNote();});
+    
+    document.getElementById('filterForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        setFilter();});
