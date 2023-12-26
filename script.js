@@ -17,7 +17,7 @@ function addNote() {
         "id": id,
         content: document.getElementById('newNote').value
     };
-    id += 1;
+    id += 1; 
     notes.push(newNote);
     document.getElementById('newNote').value = '';
     displayNotes();
@@ -41,7 +41,7 @@ function displayNotes() {
             const noteElement = document.createElement('div');
             noteElement.innerHTML =
                 `<form class="note" id="note-${note.id}">
-                    Note: <span class="content">${note.content}</span>
+                    Note: <span class="content">${marked(note.content)}</span>
                     <button class="removeButton" type="button" onclick="deleteNote(${note.id})">Remove</button>
                     <button class="editButton" type="button" onclick="editNote(${note.id})">Edit</button>
                 </form>`;
@@ -70,7 +70,8 @@ function updateNoteStorage() {
 }
 
 function setFilter() {
-    filter = document.getElementById('searchBar').value;
+    filter = document.getElementById('searchBar').value.toLowerCase();
+    console.log(filter);
     displayNotes();
 }
 

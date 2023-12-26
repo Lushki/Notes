@@ -1,6 +1,7 @@
 # Requierments:
 Notes [
     Adding a new Note [V]
+    https://www.w3schools.com/jsref/event_preventdefault.asp
     Deleting a Note [V]
     Editing a Note [V]
 ]
@@ -16,5 +17,7 @@ validation of notes: *note cant be empty [V] -just added required to content
 filtering of the notes by: content. [V] 
 https://stackoverflow.com/questions/35235794/filter-strings-in-array-based-on-content-filter-search-value
 
-text formating inside the notes: text markdown; Bold, Underline, Size and Font. []
-*if css stored as content it will display when i edit.
+text formating using markdown inside the next [V]
+https://byby.dev/js-markdown-libs
+https://github.com/markedjs/marked - import using CDN
+https://medium.com/@ricardo.zambon/use-any-github-repo-as-a-cdn-b411eebdfbf1
