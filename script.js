@@ -1,5 +1,15 @@
 let notes =[];
 let id = 0;
+
+function initialize() {
+        const storedNotes = localStorage.getItem('notes');
+        if (storedNotes) {
+            notes = JSON.parse(storedNotes);
+            id = notes.length;
+            displayNotes();
+        }
+    }
+
 function addNote(event)
 {
         event.preventDefault();
@@ -12,7 +22,7 @@ function addNote(event)
         notes.push(newNote);
         document.getElementById('newNote').value = '';
         displayNotes();
-
+        updateNoteStorage();
         
         console.log(notes); //REMOVE LATER
 }
@@ -22,12 +32,13 @@ function deletNote(noteId)
         //Querrs all notes and leaves out the one with the rec id
         notes = notes.filter(note => note.id !== noteId); 
         displayNotes();
+        updateNoteStorage();
         console.log(notes); //REMOVE LATER
 }
 
 function displayNotes()
 {
-        const container = document.createElement('content');
+        const container = document.createElement('div');
         container.innerHTML = '';
         notes.forEach(note => {
                 const  noteElement = document.createElement('div')
@@ -55,9 +66,15 @@ function editNote(noteId)
         if (updatedContent !== null) {
                 noteToEdit.content = updatedContent;
                 displayNotes();
+                updateNoteStorage();
             }
         console.log(notes); //Remove Later
 }
 
+function updateNoteStorage()
+{
+        localStorage.setItem('notes',JSON.stringify(notes));
+}
 
+window.addEventListener('load',initialize);
 document.getElementById('noteForm').addEventListener('submit',addNote);
